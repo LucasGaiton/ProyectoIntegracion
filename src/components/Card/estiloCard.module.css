@@ -1,0 +1,53 @@
+.contenedor{
+    position: relative;
+    font-family: revert;
+    box-sizing: content-box;
+    display: inline-table;
+    width: 320px;
+    height: 669px;
+    margin: 50px;
+    border-radius: 2%;
+    border: solid rgb(51, 164, 10) 1px;
+    transition: transform .5s;
+    color: rgb(4, 255, 217);
+    text-shadow: 2px 2px 3px black;
+}
+
+.contenedor:hover{
+    transition: .5s; 
+    transform:scale(1.1)
+    
+}
+.origin{
+    font-size: unset;
+}
+.imagen{
+    border-radius: 71px;
+}
+.divButton{
+    display: flex;
+    justify-content: end;
+}
+.botonOnclose{
+    background: transparent;
+    border:none;
+    color:red;
+
+}
+.cardName{
+    position:absolute;
+    top: 250px;
+    left: 30px;
+    background-color: rgb(247, 251, 3);
+    color: rgb(0, 0, 0);
+    font-size: 1.1vw;
+    text-shadow: none;
+    width: 184px;
+    font-family: sans-serif;    
+
+    
+    
+    
+}
+
+

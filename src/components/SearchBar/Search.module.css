@@ -1,0 +1,14 @@
+
+.contenedor{
+    display: inline;
+    background-color: black;
+    right: 0;
+    position: relative;
+    top: 10px;
+    height: fit-content;
+}
+    
+
+.button{
+    right: 0px;
+}

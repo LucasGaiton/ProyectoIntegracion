@@ -1,0 +1,22 @@
+.nav{
+    display: flex  ;
+    position: fixed;
+    width: -webkit-fill-available;
+    height: 50px;
+    top: 0;
+    justify-content: end;
+    border: solid white 2px;
+    background-color: white;
+    justify-content: space-between;
+    border: rgb(57, 237, 7) solid 2px ;
+    border-radius: 10px;
+    z-index: 20;
+}
+.navegation{
+    padding: 10px;
+    width: 1000px;
+    
+}
+.NavLink{
+    margin:35px
+}

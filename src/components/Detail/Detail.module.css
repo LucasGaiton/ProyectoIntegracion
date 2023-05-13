@@ -1,0 +1,24 @@
+.Contenedor{
+    display: inline-block;
+    margin-top: 100px;
+    
+}
+.DivInfo{
+    display: inline-block;
+    border: solid rgb(51, 164, 10) 1px;
+    color: aliceblue;
+    text-shadow: 2px 2px 3px black;
+    
+    
+}
+.DivImagen{
+    display: inline-block;
+    width: 630px;
+
+}
+.Imagen{
+    width: 370px;
+    height: 315px;
+    
+
+}
