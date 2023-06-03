@@ -1,0 +1,21 @@
+.contenedor{
+    margin: 173px;
+    background-color: aquamarine;
+    display: inline-block;
+    width: 600px;
+    height: 600px;
+    position: relative;
+
+}
+.forma{
+    position: absolute;
+    left: 0;
+    top: 140px;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    font-size: larger;
+}
+.input{
+    margin: 20px
+}

@@ -1,7 +1,8 @@
-export default function Landing(){
+import { Form } from "../components/Form/Form"
+export default function Landing({login}){
     return(
         <>
-            <h1>Supuestologin</h1>
+            <Form login={login}></Form>
         </>
     )
 }

@@ -1,15 +1,24 @@
 import SearchBar from '../SearchBar/SearchBar'
-import style from './Nav.module.css'
+import Style from './Nav.module.css'
 import { NavLink } from 'react-router-dom'
 
-export default function Nav({onSearch}){
-    return(
-        <nav className={style.nav}>
-            <div className={style.navegation}>
-                <NavLink className={style.NavLink} to='/Home'>Home</NavLink>
-                <NavLink className={style.NavLink} to = '/About'>About</NavLink>
+export default function Nav({ onSearch, logOut }) {
+    //Handdlers 
+    const handdlerOut = () => {
+        logOut()
+    }
+    return (
+        <nav className={Style.nav}>
+            <div>
+                <button onClick={handdlerOut} className={Style.buttonLogOut}>LogOut</button>
             </div>
-            <SearchBar onSearch={onSearch}/>
+            <div className={Style.navegation}>
+                <NavLink className={Style.NavLink} to='/Home'>Home</NavLink>
+                <NavLink className={Style.NavLink} to='/About'>About</NavLink>
+                <NavLink className={Style.NavLink} to='/favorites'>Favorites</NavLink>
+
+            </div>
+            <SearchBar onSearch={onSearch} />
         </nav>
     )
 }

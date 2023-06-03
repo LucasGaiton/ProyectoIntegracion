@@ -1,22 +1,45 @@
-// import characters from './data.js';
-/*import Card from './components/Card/Card';*/
-// import SearchBar from './components/SearchBar/SearchBar.jsx';
-import {useState} from "react";
+
+//Import generales
 import './App.css';
-import Nav from "./components/Nav/Nav"
 import axios from "axios"
-import {Routes,Route} from 'react-router-dom'
+
+//Hooks
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from "react";
+
+//Views
 import Home from './views/home';
 import Landing from "./views/Landing";
 import About from "./views/about";
 import Datail from "./views/Datail";
+import Favorites from './views/Favorites'
+
+//Componentes
+import Nav from "./components/Nav/Nav"
 
 
-
-
-function App(){
+function App() {
+   //Estados locales
    const [characters, setCharacters] = useState([]);
+   const [access, setAccess] = useState(false)
 
+   //UseEffect
+   useEffect(() => {
+      //Cuando se monte el app vamos a preguntar por access
+      !access && navigate('/');
+   }, [access]);
+
+
+   //Variables para validacion de el login
+   const EMAIL = "gaitonlucas7@gmail.com"
+   const PASSWORD = "123456"
+
+
+   const location = useLocation()
+   const navigate = useNavigate()
+
+
+   //Funciones 
    function onSearch(id) {
       axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
          if (data.name) {
@@ -24,23 +47,37 @@ function App(){
          } else {
             window.alert('¡No hay personajes con este ID!');
          }
-   });
+      });
    }
-   function oneClose(id){
-         if(characters.length != 1)
-            setCharacters(characters.filter(element => element.id != id))
-         else
-            setCharacters([])
+   function oneClose(id) {
+      if (characters.length != 1)
+         setCharacters(characters.filter(element => element.id != id))
+      else
+         setCharacters([])
+   }
+   function login({ email, password }) {
+      if (email === EMAIL && password === PASSWORD) {
+         setAccess(true)
+         navigate('/home')
       }
+
+
+
+   }
+   function logOut(){
+      setAccess(false)
+   }
 
    return (
       <div className='App'>
-         <Nav onSearch={onSearch}/>
+         {location.pathname !== '/' && <Nav onSearch={onSearch} logOut={logOut} />}
          <Routes>
-            <Route path="/" element={<Landing/>}></Route>
-            <Route path="/home" element={<Home onClose = {oneClose} characters ={characters} />}></Route>
-            <Route path="about" element = {<About/>}></Route>
-            <Route path="detail/:id" element = {<Datail/>}></Route>
+            <Route path="/" element={<Landing login={login} />}></Route>
+            <Route path="/home" element={<Home onClose={oneClose} characters={characters} />}></Route>
+            <Route path="about" element={<About />}></Route>
+            <Route path="detail/:id" element={<Datail />}></Route>
+            <Route path="favorites" element={<Favorites />}></Route>
+
 
          </Routes>
          {/* <Nav onSearch={onSearch}/>
