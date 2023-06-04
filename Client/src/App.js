@@ -40,18 +40,23 @@ function App() {
 
 
    //Funciones 
-   function onSearch(id) {
+   async function onSearch(id) {
       //Comprobamos que no este duplicado
       const isDuplicate = characters.some((char) => char.id === +id) //IMPORTANTE PARECEAR EL ID QUE VIENE POR INPUT
-      
+
       if (!isDuplicate) {
-         axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
-            if (data.name) {
+         try {
+            const { data } = await axios(`https://rickandmortyapi.com/api/character/${id}`)
+            if (data.name)
                setCharacters((oldChars) => [...oldChars, data]);
-            } else {
+         } catch (error) {
+            if (/404/.test(error.message)) {
                window.alert('¡No hay personajes con este ID!');
+               console.log(error.message);
+
             }
-         })
+
+         }
       }
    }
    function oneClose(id) {
@@ -60,18 +65,21 @@ function App() {
       else
          setCharacters([])
    }
-   function login({ email, password }) {
+   async function login({ email, password }) {
       const URL = 'http://localhost:3001/rickandmorty/login/';
-      console.log("Esta entrnado aca");
+      try {
+         const {data} = await axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
 
-      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+            const { access } = data;
+            console.log("Deberia ser tur");
+            setAccess(data);
+            access && navigate('/home');
+         })
 
-         const { access } = data;
-         console.log("Deberia ser tur");
-         setAccess(data);
-         access && navigate('/home');
-      }).
-         catch((error) => { console.log(error.message) });
+      } catch (error) {
+         console.log(error.message)
+      }
+
    }
    function logOut() {
       setAccess(false)
