@@ -22,7 +22,6 @@ export default function Card({ name, status, species, gander, origin, image, onC
    useEffect(() => {
       myFavorites.forEach((fav) => {
          if (fav.id === id) setIsFav(true);
-
       });
    }, [myFavorites]);
 

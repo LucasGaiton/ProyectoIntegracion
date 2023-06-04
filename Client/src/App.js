@@ -41,13 +41,18 @@ function App() {
 
    //Funciones 
    function onSearch(id) {
-      axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
-         if (data.name) {
-            setCharacters((oldChars) => [...oldChars, data]);
-         } else {
-            window.alert('¡No hay personajes con este ID!');
-         }
-      });
+      //Comprobamos que no este duplicado
+      const isDuplicate = characters.some((char) => char.id === +id) //IMPORTANTE PARECEAR EL ID QUE VIENE POR INPUT
+      
+      if (!isDuplicate) {
+         axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
+            if (data.name) {
+               setCharacters((oldChars) => [...oldChars, data]);
+            } else {
+               window.alert('¡No hay personajes con este ID!');
+            }
+         })
+      }
    }
    function oneClose(id) {
       if (characters.length != 1)
@@ -55,7 +60,7 @@ function App() {
       else
          setCharacters([])
    }
-   function login({email,password}) {
+   function login({ email, password }) {
       const URL = 'http://localhost:3001/rickandmorty/login/';
       console.log("Esta entrnado aca");
 
@@ -66,9 +71,9 @@ function App() {
          setAccess(data);
          access && navigate('/home');
       }).
-      catch((error)=>{console.log(error.message)});
+         catch((error) => { console.log(error.message) });
    }
-   function logOut(){
+   function logOut() {
       setAccess(false)
    }
 
