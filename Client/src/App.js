@@ -55,14 +55,18 @@ function App() {
       else
          setCharacters([])
    }
-   function login({ email, password }) {
-      if (email === EMAIL && password === PASSWORD) {
-         setAccess(true)
-         navigate('/home')
-      }
+   function login({email,password}) {
+      const URL = 'http://localhost:3001/rickandmorty/login/';
+      console.log("Esta entrnado aca");
 
+      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
 
-
+         const { access } = data;
+         console.log("Deberia ser tur");
+         setAccess(data);
+         access && navigate('/home');
+      }).
+      catch((error)=>{console.log(error.message)});
    }
    function logOut(){
       setAccess(false)
