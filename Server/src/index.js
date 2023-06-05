@@ -1,7 +1,10 @@
-const express = require('express'); //importmaos express
+const express = require('express'); //importmaos express         //A
 const server = express(); // ejecutamos el server 
 const PORT = 3001; // puerto 
-const router = require("./routes/index")//nos traemos las rautas creadas en routes 
+const router = require("./routes/index")//nos traemos las rautas creadas en routes  ////A
+
+// //Importamos la variable conn de la DB connection 
+const { conn } = require('./DB_connection');  ///////////// A
 
 //Midlewares
 server.use(express.json())//Esto hace que cuando devolvvamos la informacion se devuelva en formato json
@@ -22,12 +25,18 @@ server.use((req, res, next) => {
     next();
 });
 
+
+
 //Establecemos la primera ruta donde van a estar puestas las demas rutas 
 server.use('/rickandmorty', router)
 
 
 
+//Sincronizamos sequelize 
+conn.sync({ force: true })
 
 server.listen(PORT, () => { //Esto es lo que ejecutara el server cuando se monte 
     console.log('Server raised in port: ' + PORT);
-});
+})
+
+
