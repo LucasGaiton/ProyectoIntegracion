@@ -4,7 +4,7 @@
    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
    font-weight: 600;
    min-height: 100vh;
-   background-image: url('../public/imagenesUsadas/27353-rick-y-morty.png');
+   background-color: rgb(40 44 42);
    background-size: cover;
    display: flow-root;
 

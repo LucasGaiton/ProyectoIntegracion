@@ -30,11 +30,6 @@ function App() {
    }, [access]);
 
 
-   //Variables para validacion de el login
-   const EMAIL = "gaitonlucas7@gmail.com"
-   const PASSWORD = "123456"
-
-
    const location = useLocation()
    const navigate = useNavigate()
 
@@ -68,15 +63,14 @@ function App() {
    async function login({ email, password }) {
       const URL = 'http://localhost:3001/rickandmorty/login/';
       try {
-         const {data} = await axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+         const { data } = await axios(URL + `?email=${email}&password=${password}`)
 
-            const { access } = data;
-            console.log("Deberia ser tur");
-            setAccess(data);
-            access && navigate('/home');
-         })
-
-      } catch (error) {
+         const { access } = data;
+         console.log(data);
+         setAccess(true);
+         navigate('/home');
+      }
+      catch (error) {
          console.log(error.message)
       }
 
